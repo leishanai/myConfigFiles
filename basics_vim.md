@@ -37,3 +37,6 @@
 * comment and uncomment, run ```ctrl + v```will select number of colums you want insert to. Then press I to insert # or any comment char, and press ESC twice to apply to all columns
 * remove comments: run ```ctrl+v```to select comment chars that you want to remove, and then  press d to remove all
 * mass copy and paste, press v or V to select the block you want to copy. Then  press y to copy or d to cut. Move the cursor to the place you want to paste and press p to paste after cursor or press P to paste before the cursor.
+* ctrl+z to suspend vim
+type fg in terminal to get back to vim
+alternatively, type :shell direct to terminal and type exit go back to vim(does require support from vim)
