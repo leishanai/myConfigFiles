@@ -10,7 +10,7 @@
     * [3. Window](#3-window)
 * [Built-in nerdtree "netrw" and useful plugin "CtrlP"](#built-in-nerdtree-netrw-and-useful-plugin-ctrlp)
 * [Interact with terminal](#interact-with-terminal)
-* [Copy, paste, cut and delete](#copy-paste-cut-and-delete)
+* [Copy, paste, cut, delete and V-mode](#copy-paste-cut-delete-and-v-mode)
 * [Replace and replace mode](#replace-and-replace-mode)
 * [Keyboard](#keyboard)
 
@@ -82,9 +82,16 @@ Alternatively, plugin "CtrlP" does the same thing with less micro.
 * Alternatively, typing ```:shell``` directs to terminal. Type ```exit``` goes back to vim
 * Open a vertical terminal in tab: ```:vert term```
 
-## Copy, paste, cut and delete
+## Copy, paste, cut, delete and V-mode
 * Copy -> y(yank), paste -> p, cut -> d, delete-> x. These moves are valid in normal mode.
 * To enter insert mode, s = x + insert mode, c = d + insert mode.
+* Three mass select moves: ```v``` visual mode, ```V``` V-line mode, and ```ctrl + v``` V-block mode. 
+* In particular, to comment and uncomment in vim,
+    1. Go to the first column by pressing ```0```
+    2. Enter V-block mode ```ctrl + v```, select number of rows to be commented, ```Shift + i``` and then insert corresponding comment character.
+    3. Press ESC twice to apply to all rows selected.
+    4. Similarly, to uncomment a block, replace ```Shift + i``` by ```d```or ```x``` in the above operations.
+    5. Another variant: column-wise mass replacement. Replace ```Shift + i``` by ```s``` or ```c```.
 * Magic moves: ```yip``` (yank in paragraph) copies the whole block. Similarly you can replace y by d to cut the paragraph. Changing p by s(sentence) will copy the sentence until next period.
 
 
