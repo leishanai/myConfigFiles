@@ -1,7 +1,34 @@
+
+<!-- vim-markdown-toc GFM -->
+
+* [Some basics in using vim](#some-basics-in-using-vim)
+    * [I. Vim version](#i-vim-version)
+    * [II. Buffer, tab and window](#ii-buffer-tab-and-window)
+        * [1. Buffer](#1-buffer)
+        * [2. Tab](#2-tab)
+        * [3. Window](#3-window)
+    * [II. Built-in nerdtree "netrw" and useful plugin "CtrlP"](#ii-built-in-nerdtree-netrw-and-useful-plugin-ctrlp)
+    * [III. Interact with terminal](#iii-interact-with-terminal)
+    * [IV. Copy, paste, cut and delete](#iv-copy-paste-cut-and-delete)
+    * [V. Replace and replace mode](#v-replace-and-replace-mode)
+    * [Keyboard](#keyboard)
+
+<!-- vim-markdown-toc -->
+# Some basics in using vim
 ## I. Vim version
 There are many different version of vim. To get most of the function, there are two things that are supposed to be supported from vim.
-1. Run ```vim --version |grep"clipboard"``` in terminal. If you see ```-clipboard```, it indicates that current vim does not support using clipboard from the system. In linux, this can be resolved by installing vim-gnome, ```sudo apt-get install vim-gnome```. If ```set clipboard=unnamed``` is added in vimrc file, you are allowed to copy and paste using OS clipboard in vim.
-2. Run ```vim --version | grep python``` in terminal. If you see ```+python3```, it means it has python3 integrated. Some plugins may require such support. This is default implementation in vim 8.1.
+1. Run ```vim --version | grep clipboard``` in terminal. If you see ```-clipboard```, it indicates that current vim does not support using clipboard from the system. In linux, this can be resolved by installing vim-gnome, ```sudo apt-get install vim-gnome```. If ```set clipboard=unnamed``` is added in vimrc file, you are allowed to copy and paste using OS clipboard in vim.
+2. Run ```vim --version | grep python``` in terminal. If you see ```+python3```, vim has python3 integrated. Some plugins may require such support. This is default implementation in vim 8.1.
+3. To choose the default text editor in ubuntu, run ```sudo update-alternatives --config editor```.
+
+      |     | Selection | Path               | Priority | Status      |
+      | --- | ---       | ---                | ---      | ---         |
+      | *   | 0         | /usr/bin/vim.gtk3  | 50       | auto mode   |
+      |     | 1         | /bin/ed            | -100     | manual mode |
+      |     | 2         | /bin/nano          | 40       | manual mode |
+      |     | 3         | /usr/bin/vim.basic | 30       | manual mode |
+      |     | 4         | /usr/bin/vim.gtk3  | 50       | manual mode |
+      |     | 5         | /usr/bin/vim.tiny  | 15       | manual mode |
 
 ## II. Buffer, tab and window
 Buffer, tab and window has different roles in vim. Buffers are a bunch of files loaded in memory. In other words, they can be "hidden" and not touchable. But you can edit buffer and save it. In that case, buffer has no difference with tab or window--representing a file in a "window" or a "tab". However, when you have more than one file to be edited. Three concepts start to split with distinct definitions. It is not necessary to have one-to-one correspondence between a buffer and a window. Window is regarded as a "viewport" onto a single buffer. Buffers become concrete and visible(opposite to hidden) once being loaded onto a window. And tab is a just a collection of one or mmore windows. If you are still struggling with the concepts, think about their functionalities. Without buffer, tab and window are exactly the same thing as they appear in web browser, file explorer and etc. Vim just provides a less ambiguous way of interpreting the process of dealing with text: load the file from hard drive to memory and then representing it via ad-hoc viewport. To make it short,
