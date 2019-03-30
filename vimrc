@@ -5,15 +5,15 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized' " solarized color scheme
-Plugin 'vim-airline/vim-airline' " two airline plugins
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'godlygeek/tabular' " two markdown plugins
-Plugin 'plasticboy/vim-markdown'
-"Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'tpope/vim-fugitive' " git tool
-Plugin 'kien/ctrlp.vim' " file search
+Plugin 'altercation/vim-colors-solarized' " solarized colorscheme
+Plugin 'vim-airline/vim-airline' " airline 
+Plugin 'vim-airline/vim-airline-themes' " airline colorscheme
+Plugin 'godlygeek/tabular' " tabular 
+Plugin 'plasticboy/vim-markdown' " markdown syntax highlight
+Plugin 'mzlogin/vim-markdown-toc' " generate toc for markdown
+Plugin 'kien/rainbow_parentheses.vim' " rainbow parentheses
+Plugin 'tpope/vim-fugitive' " git 
+Plugin 'kien/ctrlp.vim' " file explorer
 Plugin 'vim-syntastic/syntastic' " syntastic check
 
 call vundle#end()
@@ -28,12 +28,19 @@ set number
 set showmode
 set showcmd
 set scrolloff=7 " Number of lines to keep above and below the cusor
-set hidden
+set hidden " show hidden buffer
 set history=50
 set incsearch " search while typing
-set hlsearch " highlight search item
+set hlsearch " highlight search
 set ruler " show the position of cursor
-set clipboard=unnamed " use system clipboard
+set clipboard=unnamed " use OS clipboard
+
+" highlight the position of cursor
+set cursorcolumn
+set cursorline
+
+" enable mouse in vim
+" set mouse=a
 
 set tabstop=4 " tab=4space
 set shiftwidth=4 " indent width
@@ -43,25 +50,18 @@ set smartindent " another autoindent
 set backspace=indent,eol,start " grant backspace delete role
 " set backspace=2 " alternative way to do the same thing as above
 
-" change default leader key
+" default leader key
 let mapleader=","
 
-" vim theme setting
+" vim colorscheme setting
 syntax enable
 set background=dark
 colorscheme solarized
 let g:solarized_termcolors=256
 
-" highlight the position of cursor
-set cursorcolumn
-set cursorline
-
-" enable mouse
-" set mouse=a
-
-" disable markdown folding
-" syntax on " show syntax on md file
-let g:vim_markdown_folding_disabled=1 " disable folding in md
+" markdown setting
+" syntax on " show syntax on md file. Note that it overrides colorscheme 
+let g:vim_markdown_folding_disabled=1 " disable folding
 
 " statusline settings
 set laststatus=2 " alwasy show statusline
@@ -69,8 +69,7 @@ let g:airline_powerline_fonts = 1 " powerline fonts
 let g:airline#extensions#tabline#enabled=1 " enable tabline
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
-" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
-
+" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c " statusline format
 " fancy statusline
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -82,7 +81,7 @@ let g:airline_right_alt_sep = '❮'
 let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.branch = '⎇'
 
-" rainbow parenthesis settings
+" rainbow parentheses settings
 let g:rbpt_colorpairs = [
             \ ['brown',       'RoyalBlue3'],
             \ ['Darkblue',    'SeaGreen3'],
@@ -107,13 +106,14 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-" shortcut for changing the size of windows
+" shortcut for changing the size of the window
 map <leader>= <C-W>+
 map <leader>- <C-W>-
 map <leader>= <C-W>>
 map <leader>- <C-W><
 
-tnoremap <ESC> <C-w>:q!<CR> " shortcut to quit terminal in split window
+" misc shortcuts
+tnoremap <ESC> <C-w>:q!<CR> " shortcut to quit terminal in a split window
 nnoremap <Space> i<Space><Right><ESC> " add space in normal mode
 
 " ctrlp settings
@@ -126,7 +126,7 @@ let g:ctrlp_custom_ignore = {
     \ }
 let g:ctrlp_working_path_mode=0
 
-" synatstic settings
+" syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -137,6 +137,5 @@ let g:syntastic_check_on_wq = 0
 " for cosmetic purpose
 " let g:syntastic_error_symbol='>>'
 " let g:syntastic_warning_symbol='>'
-let g:syntastic_python_checkers=['pyflakes'] " faster algorithm
-" let g:syntastic_enable_highlighting=1 " highlight error position
+let g:syntastic_python_checkers=['pyflakes'] " best checker for python
 let g:syntastic_loc_list_height = 5 " error window height

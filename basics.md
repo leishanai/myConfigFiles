@@ -1,25 +1,25 @@
+# Some basics in using vim
 
+## Table of content
 <!-- vim-markdown-toc GFM -->
 
-* [Some basics in using vim](#some-basics-in-using-vim)
-    * [I. Vim version](#i-vim-version)
-    * [II. Buffer, tab and window](#ii-buffer-tab-and-window)
-        * [1. Buffer](#1-buffer)
-        * [2. Tab](#2-tab)
-        * [3. Window](#3-window)
-    * [II. Built-in nerdtree "netrw" and useful plugin "CtrlP"](#ii-built-in-nerdtree-netrw-and-useful-plugin-ctrlp)
-    * [III. Interact with terminal](#iii-interact-with-terminal)
-    * [IV. Copy, paste, cut and delete](#iv-copy-paste-cut-and-delete)
-    * [V. Replace and replace mode](#v-replace-and-replace-mode)
-    * [Keyboard](#keyboard)
+* [Vim version](#vim-version)
+* [Buffer, tab and window](#buffer-tab-and-window)
+    * [1. Buffer](#1-buffer)
+    * [2. Tab](#2-tab)
+    * [3. Window](#3-window)
+* [Built-in nerdtree "netrw" and useful plugin "CtrlP"](#built-in-nerdtree-netrw-and-useful-plugin-ctrlp)
+* [Interact with terminal](#interact-with-terminal)
+* [Copy, paste, cut and delete](#copy-paste-cut-and-delete)
+* [Replace and replace mode](#replace-and-replace-mode)
+* [Keyboard](#keyboard)
 
 <!-- vim-markdown-toc -->
-# Some basics in using vim
-## I. Vim version
+## Vim version
 There are many different version of vim. To get most of the function, there are two things that are supposed to be supported from vim.
-1. Run ```vim --version | grep clipboard``` in terminal. If you see ```-clipboard```, it indicates that current vim does not support using clipboard from the system. In linux, this can be resolved by installing vim-gnome, ```sudo apt-get install vim-gnome```. If ```set clipboard=unnamed``` is added in vimrc file, you are allowed to copy and paste using OS clipboard in vim.
-2. Run ```vim --version | grep python``` in terminal. If you see ```+python3```, vim has python3 integrated. Some plugins may require such support. This is default implementation in vim 8.1.
-3. To choose the default text editor in ubuntu, run ```sudo update-alternatives --config editor```.
+* Run ```vim --version | grep clipboard``` in terminal. If you see ```-clipboard```, it indicates that current vim does not support using clipboard from the system. In linux, this can be resolved by installing vim-gnome, ```sudo apt-get install vim-gnome```. If ```set clipboard=unnamed``` is added in vimrc file, you are allowed to copy and paste using OS clipboard in vim.
+* Run ```vim --version | grep python``` in terminal. If you see ```+python3```, vim has python3 integrated. Some plugins may require such support. This is default implementation in vim 8.1.
+* To choose the default text editor in ubuntu, run ```sudo update-alternatives --config editor```.
 
       |     | Selection | Path               | Priority | Status      |
       | --- | ---       | ---                | ---      | ---         |
@@ -30,7 +30,7 @@ There are many different version of vim. To get most of the function, there are 
       |     | 4         | /usr/bin/vim.gtk3  | 50       | manual mode |
       |     | 5         | /usr/bin/vim.tiny  | 15       | manual mode |
 
-## II. Buffer, tab and window
+## Buffer, tab and window
 Buffer, tab and window has different roles in vim. Buffers are a bunch of files loaded in memory. In other words, they can be "hidden" and not touchable. But you can edit buffer and save it. In that case, buffer has no difference with tab or window--representing a file in a "window" or a "tab". However, when you have more than one file to be edited. Three concepts start to split with distinct definitions. It is not necessary to have one-to-one correspondence between a buffer and a window. Window is regarded as a "viewport" onto a single buffer. Buffers become concrete and visible(opposite to hidden) once being loaded onto a window. And tab is a just a collection of one or mmore windows. If you are still struggling with the concepts, think about their functionalities. Without buffer, tab and window are exactly the same thing as they appear in web browser, file explorer and etc. Vim just provides a less ambiguous way of interpreting the process of dealing with text: load the file from hard drive to memory and then representing it via ad-hoc viewport. To make it short,
 ```
 A buffer is the in-memory text of a file.
@@ -67,7 +67,7 @@ Again, it is not necessary to remove hidden buffers, as they do not occupy much 
 * Split windows in current window ```:sp[lit]``` or ```ctrl + w, s``` and ```vs[plit]``` or ```ctrl + w, v```
 * Swap the current windows with the right or bottom window using```ctrl + w + r```or in the opposite direction using ```ctrl + w + R```
 
-## II. Built-in nerdtree "netrw" and useful plugin "CtrlP"
+## Built-in nerdtree "netrw" and useful plugin "CtrlP"
 Vim has its own file explore tree. Tree can be opened in 3 different ways,
 * Vertical split, ```:Vex[plore]```. Horizontal split, ```:Sex[plore]```. In current tab, ```:Ex[plore]```.
 * Navigate to the file to open, and press ```enter```.
@@ -76,22 +76,22 @@ Alternatively, plugin "CtrlP" does the same thing with less micro.
 * ```<leader> + p``` searches file in the current folder. ```<leader> + f``` locate file from MostRecentlyUsed files.
 * Navigate to the desired file. ```ctrl + x``` opens the file in a horizontal window. ```ctrl + v``` opens the file in a vertical window. ```ctrl + t``` opens the file in a new tab.
 
-## III. Interact with terminal
+## Interact with terminal
 * Type ```!<commands> will run the terminal command in vim, e.g. ```python -V```displays python version
 * ```ctrl+z``` suspends vim, type ```fg``` in terminal to get back to vim
 * Alternatively, typing ```:shell``` directs to terminal. Type ```exit``` goes back to vim
 * Open a vertical terminal in tab: ```:vert term```
 
-## IV. Copy, paste, cut and delete
-1. Copy -> y(yank), paste -> p, cut -> d, delete-> x. These moves are valid in normal mode.
-2. To enter insert mode, s = x + insert mode, c = d + insert mode.
-3. Magic moves: ```yip``` (yank in paragraph) copies the whole block. Similarly you can replace y by d to cut the paragraph. Changing p by s(sentence) will copy the sentence until next period.
+## Copy, paste, cut and delete
+* Copy -> y(yank), paste -> p, cut -> d, delete-> x. These moves are valid in normal mode.
+* To enter insert mode, s = x + insert mode, c = d + insert mode.
+* Magic moves: ```yip``` (yank in paragraph) copies the whole block. Similarly you can replace y by d to cut the paragraph. Changing p by s(sentence) will copy the sentence until next period.
 
 
-## V. Replace and replace mode
-1. Navigate to the character you want to change, do ```r + char``` replaces the character under the cursor by char.
-2. ```Shift + r``` enters replace mode where you can replace characters from the current cursor. Backspace will undo the change you made in this mode.
-3. Mass replace, ```%s/term1/term2/gc``` meaning replace term1 by term2 in the whole file and every replacement requires comfirmation.
+## Replace and replace mode
+* Navigate to the character you want to change, do ```r + char``` replaces the character under the cursor by char.
+* ```Shift + r``` enters replace mode where you can replace characters from the current cursor. Backspace will undo the change you made in this mode.
+* Mass replace, ```%s/term1/term2/gc``` meaning replace term1 by term2 in the whole file and every replacement requires comfirmation.
 
 
 ## Keyboard
