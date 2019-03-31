@@ -1,4 +1,7 @@
 # Some basics in using vim
+Fun learning curve for common editors,
+
+<div align=center><img src="images/curve.jpg" width="60%" ></div>
 
 ## Table of content
 <!-- vim-markdown-toc GFM -->
